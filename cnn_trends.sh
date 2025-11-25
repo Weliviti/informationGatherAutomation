@@ -1,3 +1,7 @@
-curl -s "https://feeds.bbci.co.uk/news/technology/rss.xml" \
+curl -s "https://feeds.bbci.co.uk/news/rss.xml" \
 | grep -oP '(?<=<title>).*?(?=</title>)' \
-| grep -i "AI\|Artificial Intelligence\|ChatGPT"
+| tail -n +2 \
+| sed 's/<!\[CDATA\[//; s/\]\]>//' \
+> /mnt/c/Users/USER/Desktop/bbc_news.txt
+
+echo "BBC news saved to Windows Desktop!"
